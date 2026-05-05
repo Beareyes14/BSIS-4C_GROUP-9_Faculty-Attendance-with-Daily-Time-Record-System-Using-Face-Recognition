@@ -1,0 +1,102 @@
+/* =========================================
+   MASTER STYLESHEET (css/style.css)
+========================================= */
+
+/* 1. GLOBAL RESET */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+body {
+    background-color: #F9F7E8;
+    color: #1F4015;
+    overflow-x: hidden; /* Prevents left/right scrolling */
+}
+
+/* 2. SIDEBAR (Desktop) */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 270px;
+    height: 100vh;
+    background-color: #AAB396; 
+    border-right: 2px solid #1F4015;
+    padding-top: 20px;
+    transition: transform 0.3s ease;
+    z-index: 1000;
+    overflow-y: auto;
+}
+
+/* 3. MAIN CONTENT AREA (Desktop) */
+.content {
+    margin-left: 270px; /* Space for the sidebar */
+    padding: 30px;
+    transition: margin-left 0.3s ease;
+    width: 100%;
+    max-width: calc(100% - 270px);
+}
+
+/* 4. HAMBURGER BUTTON (Hidden on Desktop) */
+.mobile-toggle {
+    display: none;
+    position: fixed;
+    top: 15px;
+    left: 15px;
+    background-color: #1F4015;
+    color: #F9F7E8;
+    border: none;
+    padding: 8px 14px;
+    font-size: 22px;
+    border-radius: 6px;
+    cursor: pointer;
+    z-index: 1001; 
+    box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+}
+
+/* 5. RESPONSIVE TABLES */
+.table-container, .table-responsive {
+    width: 100%;
+    overflow-x: auto; /* Allows table to scroll left/right on phones */
+    -webkit-overflow-scrolling: touch;
+}
+
+table {
+    width: 100%;
+    min-width: 700px; /* Forces table to stay readable, triggers scroll on mobile */
+    border-collapse: collapse;
+}
+
+/* 6. MOBILE RESPONSIVENESS (Phones & Tablets) */
+@media (max-width: 900px) {
+    .mobile-toggle {
+        display: block; /* Show the ☰ button */
+    }
+
+    .sidebar {
+        transform: translateX(-100%); /* Hide sidebar off-screen to the left */
+    }
+
+    .sidebar.active {
+        transform: translateX(0); /* Slide it back in when button is clicked */
+    }
+
+    .content {
+        margin-left: 0 !important; /* Remove the 270px gap */
+        max-width: 100%;
+        padding: 70px 15px 15px 15px !important; /* Add space at top so content doesn't hide behind the ☰ button */
+    }
+
+    /* Stack cards and containers vertically */
+    .insights {
+        flex-direction: column;
+        gap: 15px;
+    }
+    .card, .chart-container {
+        width: 100% !important;
+        min-width: 100%;
+    }
+}
